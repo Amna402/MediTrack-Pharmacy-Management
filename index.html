@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home | MediTrack</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="wrap bar">
+        <a class="brand" href="index.html" aria-label="MediTrack home">
+            <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+                <rect width="30" height="30" rx="8" fill="#0f9d8a"/>
+                <rect x="7" y="12" width="16" height="6" rx="3" transform="rotate(-35 15 15)" fill="#fff"/>
+                <rect x="15" y="12" width="8" height="6" rx="3" transform="rotate(-35 15 15)" fill="#e4572e"/>
+            </svg>
+            <span>MediTrack</span>
+        </a>
+        <nav class="nav" aria-label="Main">
+            <a href="index.html" class="on">Home</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="login.html">Sign In</a>
+            <a href="register.html" class="btn btn-small">Sign Up</a>
+        </nav>
+    </div>
+</header>
+<main>
+    <section class="hero">
+        <div class="wrap hero-grid">
+            <div class="hero-text">
+                <h1>Sell the oldest batch first. Order only what will sell.</h1>
+                <p class="lead">MediTrack keeps every medicine batch with its expiry date, sells the earliest-expiring stock automatically, and tells the pharmacist when to reorder.</p>
+                <div class="cta-row">
+                    <a class="btn" href="register.html">Create an account</a>
+                    <a class="btn btn-line" href="login.html">Sign In</a>
+                </div>
+            </div>
+
+            <div class="shelf" role="img" aria-label="Example: three batches of Paracetamol, the earliest expiring batch sells first">
+                <div class="shelf-title">
+                    <strong>Paracetamol 500 mg</strong>
+                    <span>3 batches in stock</span>
+                </div>
+                <ul class="batches">
+                    <li class="soon">
+                        <div class="b-top"><span class="b-no">B-2301</span><span class="b-qty">100 tablets</span><span class="b-tag">Sells first</span></div>
+                        <div class="bar"><i class="w17"></i></div>
+                        <p>Expires in 62 days</p>
+                    </li>
+                    <li>
+                        <div class="b-top"><span class="b-no">B-2307</span><span class="b-qty">200 tablets</span></div>
+                        <div class="bar"><i class="w66"></i></div>
+                        <p>Expires in 8 months</p>
+                    </li>
+                    <li>
+                        <div class="b-top"><span class="b-no">B-2312</span><span class="b-qty">150 tablets</span></div>
+                        <div class="bar"><i class="w100"></i></div>
+                        <p>Expires in 12 months</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="wrap features">
+        <h2>What MediTrack takes care of</h2>
+        <dl class="feature-list">
+            <div>
+                <dt>Batch-wise selling</dt>
+                <dd>Each sale takes stock from the batch that expires first, and an expired batch can never be sold.</dd>
+            </div>
+            <div>
+                <dt>Expiry and low-stock alerts</dt>
+                <dd>Medicines close to expiry or running low show up in a list before they become a loss.</dd>
+            </div>
+            <div>
+                <dt>Smart reorder suggestion</dt>
+                <dd>Past sales and supplier delivery time decide how much to order. Stock that will expire before it sells is not counted as usable.</dd>
+            </div>
+        </dl>
+    </section>
+
+    <section class="roles">
+        <div class="wrap">
+            <h2>Built for the whole pharmacy</h2>
+            <ul class="role-row">
+                <li><strong>Pharmacist</strong><span>Manages medicines, batches, alerts, orders and reports.</span></li>
+                <li><strong>Cashier</strong><span>Searches medicines and completes sales at the counter.</span></li>
+                <li><strong>Supplier</strong><span>Views purchase orders and updates delivery status.</span></li>
+                <li><strong>Administrator</strong><span>Manages users and alert settings.</span></li>
+            </ul>
+        </div>
+    </section>
+</main>
+<footer class="site-footer">
+    <div class="wrap foot">
+        <p>MediTrack: Smart Pharmacy Stock and Expiry Management System</p>
+        <p><a href="contact.html">Contact Us</a> &middot; Semester Project, Software Construction and Development</p>
+    </div>
+</footer>
+<script src="validation.js"></script>
+</body>
+</html>

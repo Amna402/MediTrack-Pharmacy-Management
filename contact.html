@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact Us | MediTrack</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="wrap bar">
+        <a class="brand" href="index.html" aria-label="MediTrack home">
+            <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+                <rect width="30" height="30" rx="8" fill="#0f9d8a"/>
+                <rect x="7" y="12" width="16" height="6" rx="3" transform="rotate(-35 15 15)" fill="#fff"/>
+                <rect x="15" y="12" width="8" height="6" rx="3" transform="rotate(-35 15 15)" fill="#e4572e"/>
+            </svg>
+            <span>MediTrack</span>
+        </a>
+        <nav class="nav" aria-label="Main">
+            <a href="index.html">Home</a>
+            <a href="contact.html" class="on">Contact Us</a>
+            <a href="login.html">Sign In</a>
+            <a href="register.html" class="btn btn-small">Sign Up</a>
+        </nav>
+    </div>
+</header>
+<main class="auth">
+    <aside class="auth-side">
+        <h1>Talk to the MediTrack team</h1>
+        <p>Questions about stock tracking, expiry alerts or your account? Send a message and we will reply by email.</p>
+        <p class="side-note">Messages are stored in the <code>contact_messages</code> table.</p>
+    </aside>
+    <section class="auth-main">
+        <h2>Contact Us</h2>
+        <p class="alert alert-ok" data-alert-ok role="status" hidden></p>
+        <p class="alert alert-error" data-alert role="alert" hidden></p>
+        <form data-form="contact" novalidate>
+            <div class="field-row">
+                <div class="field">
+                    <label for="name">Your name</label>
+                    <input type="text" id="name" name="name" maxlength="50" autocomplete="name">
+                    <p class="field-error" data-error-for="name"></p>
+                </div>
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" maxlength="100" autocomplete="email">
+                    <p class="field-error" data-error-for="email"></p>
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" maxlength="100">
+                <p class="field-error" data-error-for="subject"></p>
+            </div>
+
+            <div class="field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="6" maxlength="500"></textarea>
+                <p class="counter"><span id="msg-count">0</span>/500</p>
+                <p class="field-error" data-error-for="message"></p>
+            </div>
+
+            <button type="submit" class="btn btn-block">Send message</button>
+        </form>
+    </section>
+</main>
+<footer class="site-footer">
+    <div class="wrap foot">
+        <p>MediTrack: Smart Pharmacy Stock and Expiry Management System</p>
+        <p><a href="contact.html">Contact Us</a> &middot; Semester Project, Software Construction and Development</p>
+    </div>
+</footer>
+<script src="validation.js"></script>
+</body>
+</html>

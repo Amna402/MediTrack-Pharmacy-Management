@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign In | MediTrack</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+    <div class="wrap bar">
+        <a class="brand" href="index.html" aria-label="MediTrack home">
+            <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+                <rect width="30" height="30" rx="8" fill="#0f9d8a"/>
+                <rect x="7" y="12" width="16" height="6" rx="3" transform="rotate(-35 15 15)" fill="#fff"/>
+                <rect x="15" y="12" width="8" height="6" rx="3" transform="rotate(-35 15 15)" fill="#e4572e"/>
+            </svg>
+            <span>MediTrack</span>
+        </a>
+        <nav class="nav" aria-label="Main">
+            <a href="index.html">Home</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="login.html" class="on">Sign In</a>
+            <a href="register.html" class="btn btn-small">Sign Up</a>
+        </nav>
+    </div>
+</header>
+<main class="auth">
+    <aside class="auth-side">
+        <h1>Welcome back</h1>
+        <p>Sign in to check expiry alerts, make sales and see what needs reordering.</p>
+    </aside>
+    <section class="auth-main">
+        <h2>Sign In</h2>
+        <p class="alert alert-ok" id="registered-note" hidden>Account created. You can sign in now.</p>
+        <p class="alert alert-ok" data-alert-ok role="status" hidden></p>
+        <p class="alert alert-error" data-alert role="alert" hidden></p>
+        <form data-form="login" novalidate>
+            <div class="field">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" maxlength="100" autocomplete="email">
+                <p class="field-error" data-error-for="email"></p>
+            </div>
+
+            <div class="field">
+                <label for="password">Password</label>
+                <div class="pw">
+                    <input type="password" id="password" name="password" maxlength="64" autocomplete="current-password">
+                    <button type="button" class="pw-toggle" data-toggle="password" aria-label="Show password">Show</button>
+                </div>
+                <p class="field-error" data-error-for="password"></p>
+            </div>
+
+            <button type="submit" class="btn btn-block">Sign In</button>
+            <p class="switch">New to MediTrack? <a href="register.html">Create an account</a></p>
+        </form>
+    </section>
+</main>
+<footer class="site-footer">
+    <div class="wrap foot">
+        <p>MediTrack: Smart Pharmacy Stock and Expiry Management System</p>
+        <p><a href="contact.html">Contact Us</a> &middot; Semester Project, Software Construction and Development</p>
+    </div>
+</footer>
+<script src="validation.js"></script>
+</body>
+</html>
