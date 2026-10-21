@@ -136,18 +136,45 @@
             });
             if (firstBad) { firstBad.focus(); return; } // stop: there is an error
 
-            // all fields are valid
-            if (type === 'register') {
-                window.location.href = 'login.html?registered=1';
-            } else if (type === 'login') {
-                showOk('Sign in details are valid. Server login will be connected with the Node.js backend.');
-            } else if (type === 'contact') {
-                form.reset();
-                fields.forEach(function (el) { showError(form, el, ''); touched[el.name] = false; });
-                var count = document.getElementById('msg-count');
-                if (count) count.textContent = '0';
-                showOk('Thank you. Your message has been recorded.');
+            // all fields are valid: send the data to the PHP file, which saves it in MySQL
+            var data = {};
+            fields.forEach(function (el) {
+                if (el.name === 'confirm_password' || el.name === 'terms') return;
+                data[el.name] = el.type === 'password' ? el.value : el.value.trim();
+            });
+
+            function showFail(text) {
+                var box = document.querySelector('[data-alert]');
+                if (box) { box.textContent = text; box.hidden = false; }
             }
+            var failBox = document.querySelector('[data-alert]');
+            if (failBox) failBox.hidden = true;
+
+            fetch(type + '.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(function (res) {
+                return res.json().then(function (body) { return { ok: res.ok, body: body }; });
+            })
+            .then(function (r) {
+                if (!r.ok) { showFail(r.body.message || 'Something went wrong.'); return; }
+                if (type === 'register') {
+                    window.location.href = 'login.html?registered=1';
+                } else if (type === 'login') {
+                    showOk('Welcome, ' + r.body.name + '! You are signed in.');
+                } else if (type === 'contact') {
+                    form.reset();
+                    fields.forEach(function (el) { showError(form, el, ''); touched[el.name] = false; });
+                    var count = document.getElementById('msg-count');
+                    if (count) count.textContent = '0';
+                    showOk('Thank you. Your message has been recorded.');
+                }
+            })
+            .catch(function () {
+                showFail('Cannot reach the server. Start Apache and MySQL in XAMPP and open the site from http://localhost/meditrack/');
+            });
         });
     });
 
