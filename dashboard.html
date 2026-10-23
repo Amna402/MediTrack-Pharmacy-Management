@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard | MediTrack</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .dash { padding: 40px 0 64px; }
+        .dash-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; margin-bottom: 26px; }
+        .dash-head h1 { font-size: clamp(1.6rem, 3.4vw, 2.2rem); margin: 0 0 4px; }
+        .dash-head p { margin: 0; color: var(--muted); }
+        .role-pill { display: inline-block; background: #e3f5f1; color: var(--teal-dark); border: 1px solid #b4e0d8; border-radius: 999px; padding: 2px 12px; font-size: 13px; font-weight: 600; text-transform: capitalize; }
+
+        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 0 0 32px; padding: 0; list-style: none; }
+        .stats li { background: var(--white); border: 1px solid var(--line); border-top: 4px solid var(--teal); border-radius: 12px; padding: 16px 18px; }
+        .stats li.warn { border-top-color: var(--coral); }
+        .stats strong { display: block; font-family: Sora, Arial, sans-serif; font-size: 30px; line-height: 1.1; }
+        .stats span { color: var(--muted); font-size: 14px; }
+
+        .panels { display: grid; grid-template-columns: 1.25fr 1fr; gap: 24px; align-items: start; }
+        .panel { background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+        .panel h2 { font-size: 20px; margin: 0 0 4px; }
+        .panel .sub { color: var(--muted); font-size: 14px; margin: 0 0 14px; }
+        .table-wrap { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 15px; }
+        th { text-align: left; font-size: 13px; color: var(--muted); font-weight: 600; padding: 8px 10px; border-bottom: 2px solid var(--line); white-space: nowrap; }
+        td { padding: 10px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+        tr:last-child td { border-bottom: 0; }
+        .tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 2px 10px; border-radius: 999px; white-space: nowrap; }
+        .tag-red { background: var(--coral); color: var(--white); }
+        .tag-amber { background: #fdf0d5; color: #8a5a00; border: 1px solid #f0d9a0; }
+        .tag-green { background: #e3f5f1; color: var(--teal-dark); border: 1px solid #b4e0d8; }
+        .note { margin: 22px 0 0; color: var(--muted); font-size: 14px; }
+        .dash-links { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+
+        @media (max-width: 860px) {
+            .stats { grid-template-columns: 1fr 1fr; }
+            .panels { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 520px) {
+            .stats { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<header class="site-header">
+    <div class="wrap bar">
+        <a class="brand" href="index.html" aria-label="MediTrack home">
+            <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+                <rect width="30" height="30" rx="8" fill="#0f9d8a"/>
+                <rect x="7" y="12" width="16" height="6" rx="3" transform="rotate(-35 15 15)" fill="#fff"/>
+                <rect x="15" y="12" width="8" height="6" rx="3" transform="rotate(-35 15 15)" fill="#e4572e"/>
+            </svg>
+            <span>MediTrack</span>
+        </a>
+        <nav class="nav" aria-label="Main">
+            <a href="index.html">Home</a>
+            <a href="dashboard.html" class="on">Dashboard</a>
+            <a href="contact.html">Contact Us</a>
+            <span class="who" id="who"></span>
+            <button type="button" class="btn btn-line btn-small" id="signout">Sign Out</button>
+        </nav>
+    </div>
+</header>
+
+<main class="dash">
+    <div class="wrap">
+        <div class="dash-head">
+            <div>
+                <h1>Welcome, <span id="user-name">there</span></h1>
+                <p>Signed in as <span class="role-pill" id="user-role">user</span></p>
+            </div>
+            <div class="dash-links">
+                <a class="btn btn-line btn-small" href="contact.html">Contact Us</a>
+            </div>
+        </div>
+
+        <ul class="stats" aria-label="Stock summary">
+            <li><strong>128</strong><span>Medicines in stock</span></li>
+            <li class="warn"><strong>6</strong><span>Batches expiring in 90 days</span></li>
+            <li class="warn"><strong>4</strong><span>Low stock medicines</span></li>
+            <li><strong>3</strong><span>Reorders suggested</span></li>
+        </ul>
+
+        <div class="panels">
+            <section class="panel" aria-labelledby="exp-title">
+                <h2 id="exp-title">Expiry alerts</h2>
+                <p class="sub">The batch that expires first is sold first.</p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr><th>Medicine</th><th>Batch</th><th>Qty</th><th>Expires in</th><th>Status</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Amoxicillin 500 mg</td><td>B-2288</td><td>40</td><td>18 days</td><td><span class="tag tag-red">Critical</span></td></tr>
+                            <tr><td>Paracetamol 500 mg</td><td>B-2301</td><td>100</td><td>62 days</td><td><span class="tag tag-amber">Soon</span></td></tr>
+                            <tr><td>Cetirizine 10 mg</td><td>B-2295</td><td>75</td><td>74 days</td><td><span class="tag tag-amber">Soon</span></td></tr>
+                            <tr><td>Ibuprofen 400 mg</td><td>B-2310</td><td>120</td><td>88 days</td><td><span class="tag tag-amber">Soon</span></td></tr>
+                            <tr><td>Omeprazole 20 mg</td><td>B-2322</td><td>90</td><td>5 months</td><td><span class="tag tag-green">OK</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="panel" aria-labelledby="low-title">
+                <h2 id="low-title">Low stock and reorder</h2>
+                <p class="sub">Suggested order uses past sales and supplier delivery time.</p>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr><th>Medicine</th><th>In stock</th><th>Reorder level</th><th>Suggested</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Panadol Extra</td><td>12</td><td>30</td><td>80</td></tr>
+                            <tr><td>Disprin</td><td>20</td><td>40</td><td>100</td></tr>
+                            <tr><td>ORS Sachet</td><td>8</td><td>25</td><td>60</td></tr>
+                            <tr><td>Brufen 200 mg</td><td>15</td><td>30</td><td>70</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+
+        <p class="note">This page shows sample data for the demo. It will be connected to the medicines and batches tables in the next stage.</p>
+    </div>
+</main>
+
+<footer class="site-footer">
+    <div class="wrap foot">
+        <p>MediTrack: Smart Pharmacy Stock and Expiry Management System</p>
+        <p><a href="contact.html">Contact Us</a> &middot; Semester Project, Software Construction and Development</p>
+    </div>
+</footer>
+
+<script>
+    // The name and role are saved by validation.js after a successful sign in.
+    (function () {
+        var name = sessionStorage.getItem('meditrack_name');
+        var role = sessionStorage.getItem('meditrack_role');
+
+        // Not signed in: send the visitor to the Sign In page.
+        if (!name) { window.location.href = 'login.html'; return; }
+
+        document.getElementById('user-name').textContent = name;
+        document.getElementById('user-role').textContent = role || 'user';
+        document.getElementById('who').textContent = name;
+
+        document.getElementById('signout').addEventListener('click', function () {
+            sessionStorage.removeItem('meditrack_name');
+            sessionStorage.removeItem('meditrack_role');
+            window.location.href = 'login.html';
+        });
+    })();
+</script>
+</body>
+</html>
