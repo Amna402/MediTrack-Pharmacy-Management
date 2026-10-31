@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About | MediTrack</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .about-hero { padding: 56px 0 40px; }
+        .about-hero h1 { font-size: clamp(2rem, 4.2vw, 2.9rem); line-height: 1.12; margin: 0 0 16px; letter-spacing: -.01em; max-width: 20ch; }
+        .about-hero .lead { margin-bottom: 0; }
+
+        .about-block { padding: 24px 0 48px; }
+        .about-block h2 { font-size: 26px; margin: 0 0 20px; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+        .card { background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+        .card h3 { font-size: 18px; margin: 0 0 8px; }
+        .card p { margin: 0; color: var(--muted); }
+
+        .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; counter-reset: step; }
+        .steps li { background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 22px; counter-increment: step; }
+        .steps li::before { content: counter(step); display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--teal); color: var(--white); font-family: Sora, Arial, sans-serif; font-weight: 600; margin-bottom: 12px; }
+        .steps strong { display: block; font-family: Sora, Arial, sans-serif; margin-bottom: 4px; }
+        .steps span { color: var(--muted); }
+
+        .stack { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 0; }
+        .stack div { border-top: 3px solid var(--teal); padding-top: 12px; }
+        .stack dt { font-size: 15px; color: var(--muted); font-weight: 500; font-family: Inter, Arial, sans-serif; margin-bottom: 4px; }
+        .stack dd { margin: 0; font-weight: 600; }
+
+        .info { background: var(--ink); color: var(--white); padding: 44px 0; }
+        .info h2 { font-size: 24px; margin: 0 0 18px; }
+        .info-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .info-list strong { display: block; font-size: 13px; color: #b9cbd0; font-weight: 500; margin-bottom: 2px; }
+        .info-list span { font-size: 17px; }
+
+        @media (max-width: 860px) {
+            .two-col, .steps, .info-list { grid-template-columns: 1fr; }
+            .stack { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 520px) {
+            .stack { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<header class="site-header">
+    <div class="wrap bar">
+        <a class="brand" href="index.html" aria-label="MediTrack home">
+            <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+                <rect width="30" height="30" rx="8" fill="#0f9d8a"/>
+                <rect x="7" y="12" width="16" height="6" rx="3" transform="rotate(-35 15 15)" fill="#fff"/>
+                <rect x="15" y="12" width="8" height="6" rx="3" transform="rotate(-35 15 15)" fill="#e4572e"/>
+            </svg>
+            <span>MediTrack</span>
+        </a>
+        <nav class="nav" aria-label="Main">
+            <a href="index.html">Home</a>
+            <a href="about.html" class="on">About</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="login.html">Sign In</a>
+            <a href="register.html" class="btn btn-small">Sign Up</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="about-hero">
+        <div class="wrap">
+            <h1>About MediTrack</h1>
+            <p class="lead">MediTrack is a pharmacy stock and expiry management system. It helps a pharmacy sell medicines before they expire and order only what will actually sell.</p>
+        </div>
+    </section>
+
+    <section class="wrap about-block">
+        <div class="two-col">
+            <div class="card">
+                <h3>The problem</h3>
+                <p>Pharmacies often keep several batches of the same medicine with different expiry dates. When stock is sold without checking those dates, medicines expire on the shelf, and when reorders are guessed, the shelf either runs empty or fills with stock that never sells.</p>
+            </div>
+            <div class="card">
+                <h3>Our solution</h3>
+                <p>MediTrack records every batch with its expiry date, sells the earliest-expiring batch first, warns the pharmacist about expiring and low stock, and suggests how much to reorder from past sales and supplier delivery time.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="wrap about-block">
+        <h2>How it works</h2>
+        <ol class="steps">
+            <li><strong>Record batches</strong><span>The pharmacist adds each medicine with its batch number, quantity and expiry date.</span></li>
+            <li><strong>Sell the oldest first</strong><span>At the counter, each sale takes stock from the batch that expires first. An expired batch can never be sold.</span></li>
+            <li><strong>Get alerts and suggestions</strong><span>Medicines close to expiry or running low appear in a list, along with a suggested reorder quantity.</span></li>
+        </ol>
+    </section>
+
+    <section class="wrap about-block">
+        <h2>What MediTrack takes care of</h2>
+        <dl class="feature-list">
+            <div>
+                <dt>Batch-wise selling</dt>
+                <dd>Stock is tracked per batch, so the earliest-expiring stock leaves the shelf first.</dd>
+            </div>
+            <div>
+                <dt>Expiry and low-stock alerts</dt>
+                <dd>Problems show up in a list before they turn into a loss.</dd>
+            </div>
+            <div>
+                <dt>Smart reorder suggestion</dt>
+                <dd>Stock that will expire before it sells is not counted as usable when working out an order.</dd>
+            </div>
+        </dl>
+    </section>
+
+    <section class="wrap about-block">
+        <h2>Built with</h2>
+        <dl class="stack">
+            <div><dt>Frontend</dt><dd>HTML5, CSS3, JavaScript</dd></div>
+            <div><dt>Backend</dt><dd>PHP</dd></div>
+            <div><dt>Database</dt><dd>MySQL (phpMyAdmin)</dd></div>
+            <div><dt>Tools</dt><dd>XAMPP, VS Code, Git and GitHub</dd></div>
+        </dl>
+    </section>
+
+    <section class="roles">
+        <div class="wrap">
+            <h2>Who uses MediTrack</h2>
+            <ul class="role-row">
+                <li><strong>Pharmacist</strong><span>Manages medicines, batches, alerts, orders and reports.</span></li>
+                <li><strong>Cashier</strong><span>Searches medicines and completes sales at the counter.</span></li>
+                <li><strong>Supplier</strong><span>Views purchase orders and updates delivery status.</span></li>
+                <li><strong>Administrator</strong><span>Manages users and alert settings.</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="info">
+        <div class="wrap">
+            <h2>Project information</h2>
+            <ul class="info-list">
+                <li><strong>Project</strong><span>MediTrack: Smart Pharmacy Stock and Expiry Management System</span></li>
+                <li><strong>Course</strong><span>Software Construction and Development</span></li>
+                <li><strong>Student</strong><span>Amna Hamid (F24-BSSE-004)</span></li>
+            </ul>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <div class="wrap foot">
+        <p>MediTrack: Smart Pharmacy Stock and Expiry Management System</p>
+        <p><a href="contact.html">Contact Us</a> &middot; Semester Project, Software Construction and Development</p>
+    </div>
+</footer>
+</body>
+</html>
